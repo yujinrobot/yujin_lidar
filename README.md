@@ -49,3 +49,4 @@ rosrun rviz rviz
 - 2D/3D CAD
 
 ------------------------------------------------------------------------
+![Yujin Logo](https://upload.wikimedia.org/wikipedia/commons/0/0f/Yujinrobot_logo.png "Yujin Logo")
