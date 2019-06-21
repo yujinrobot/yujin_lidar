@@ -29,10 +29,11 @@ yujin_lidar
 - yujin_3d_pub
 #### Parameters
 - ip (string, default:"")
-- 
+- lk_file
 -
 
 ## QUICK START
+filepath_to_lk.bin should be the file path to lk.bin.
 ```bash
 rosrun yujin_3d_lidar yujin_3d_pub _lk_file:=filepath_to_lk.bin
 rostopic echo /yujin3d/yujin_cloud
