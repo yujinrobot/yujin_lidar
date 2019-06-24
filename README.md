@@ -37,7 +37,7 @@ rospack profile
 - Node Name: yujin_pub
 ### Parameters
 - ip_address (string, default:"192.168.1.251")
-ipadddddd
+: asdf
 - resolution (double, default: 0.1756097561)
 - noise_level (float, default: 0.95)
 - min_height (double, default: 0)
