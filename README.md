@@ -8,7 +8,7 @@ Yujin time-of-flight LiDAR is designed to measure distances from surroundings an
 ## Yujin LiDAR Software Maintenance
 
 - ROS Version: Melodic
-- Maintainer Status: developed
+- Maintainer Status: Developed
 - Author: Ju Young Kim
 - License: BSD
 
@@ -37,7 +37,7 @@ rospack profile
 - Node Name: yujin_pub
 ### Parameters
 #### ip_address (string, default:"192.168.1.251")
-- "ip_address" is an Ip address of a LiDAR
+- "ip_address" is an ip address of a LiDAR
 #### resolution (double, default: 0.1756097561)
 - "resolution" is an angle offset that is added to vertical scanning after covering one vertical range.
 #### noise_level (float, default: 0.95)
@@ -46,9 +46,12 @@ rospack profile
 - "min_height" is the minimum level that is displayed in the screen.
 #### max_height (double, default: 3)
 - "max_height is the maximum level that is displayed in the screen.
-- sensor_height (double, default: 1.2)
-- cutoff_height (double, default: 3)
-- max_vertical_angle (double, default: 0.7854)
+#### cutoff_height (double, default: 3)
+- "cutoff_height is the upper level where the data is cut in the screen. 
+#### sensor_height (double, default: 1.2)
+- "sensor_height" is the height level where a LiDAR is placed.
+#### max_vertical_angle (double, default: 0.7854)
+
 - min_vertical_angle (double, default: -0.7854)
 - max_horizontal_angle (double, default: 1.570796)
 - min_horizontal_angle (double, default: -1.570796)
