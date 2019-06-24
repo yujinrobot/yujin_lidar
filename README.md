@@ -64,7 +64,7 @@ If you do not specify parameters' values, default values will be used. Parameter
 
 ## QUICK START
 ```bash
-rosrun yujin_3d_lidar yujin_3d_pub _lk_file:=filepath_to_lk.bin
+rosrun yujin_lidar yujin_pub
 rostopic echo /yujin3d/yujin_cloud
 rosrun rviz rviz
 ```
