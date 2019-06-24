@@ -37,28 +37,31 @@ rospack profile
 - Node Name: yujin_pub
 ### Parameters
 #### ip_address (string, default:"192.168.1.251")
-- "ip_address" is an ip address of a LiDAR
-#### resolution (double, default: 0.1756097561)
-- "resolution" is an angle offset that is added to vertical scanning after covering one vertical range.
+- An IP address of your LiDAR
+#### resolution (double, default: 0.1756097561, degree)
+- An angle offset that is added to vertical scanning after covering one vertical range.
 #### noise_level (float, default: 0.95)
-- Raw data from a LiDAR contains some non-object data (which is an error). "noise level" is a filter that removes those sparse errors.
-#### min_height (double, default: 0)
-- "min_height" is the minimum level that is displayed in the screen.
-#### max_height (double, default: 3)
-- "max_height is the maximum level that is displayed in the screen.
-#### cutoff_height (double, default: 3)
-- "cutoff_height is the upper level where the data is cut in the screen. 
-#### sensor_height (double, default: 1.2)
-- "sensor_height" is the height level where a LiDAR is placed.
-#### max_vertical_angle (double, default: 0.7854)
-
-- min_vertical_angle (double, default: -0.7854)
-- max_horizontal_angle (double, default: 1.570796)
-- min_horizontal_angle (double, default: -1.570796)
-- angle_offset (float, default: 2.530727)
+- Raw data from a LiDAR contains some non-object data (which is an error). This is a filter that removes those sparse errors.
+#### min_height (double, default: 0, meter)
+- The minimum height level that is displayed on the screen.
+#### max_height (double, default: 3, meter)
+- The maximum height level that is displayed on the screen.
+#### cutoff_height (double, default: 3, meter)
+- The upper height level where the data is cut on the screen. 
+#### sensor_height (double, default: 1.2, meter)
+- The height level where a LiDAR is placed.
+#### max_vertical_angle (double, default: 0.7854, radian)
+- The upper angle range of laser scan. The default value is +90 in degree.
+#### min_vertical_angle (double, default: -0.7854, radian)
+- The lower angle range of laser scan. The default value is -90 in degree.
+#### max_horizontal_angle (double, default: 1.570796, radian)
+- The right angle range of laser scan. The default value is +180 in degree.
+#### min_horizontal_angle (double, default: -1.570796, radian)
+- The left angle range of laser scan. The default value is -180 in degree.
+#### angle_offset (float, default: 0, radian)
+- A horizontal angle offset that is added to the point cloud data. The default value is 0.
 
 ## QUICK START
-filepath_to_lk.bin should be the file path to lk.bin.
 ```bash
 rosrun yujin_3d_lidar yujin_3d_pub _lk_file:=filepath_to_lk.bin
 rostopic echo /yujin3d/yujin_cloud
