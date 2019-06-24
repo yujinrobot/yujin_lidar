@@ -3,6 +3,7 @@
 
 ## About Yujin LiDAR
 
+Yujin 3D time-of-flight LiDAR is designed to measure distance from surroundings and collect 3D point cloud data. LiDAR is an optimized solution of indoor mapping, navigation, localization and other applications in the field of robotics, industries and safety & security.
 ## Yujin LiDAR Software Maintenance
 
 - ROS Version: Melodic
@@ -11,6 +12,10 @@
 - License: BSD
 
 ## Supported Hardware
+- YRL2-05 (2D, 5m)
+- YRL2-25 (2D, 25m)
+- YRL3-05 (3D, 5m)
+- YRL3-25 (3D, 25m)
 
 ## ROS Package Installation
 ```bash
