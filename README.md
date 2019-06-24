@@ -37,12 +37,15 @@ rospack profile
 - Node Name: yujin_pub
 ### Parameters
 #### ip_address (string, default:"192.168.1.251")
-- (string, default:"192.168.1.251")
-- Ip address of a LiDAR
-- resolution (double, default: 0.1756097561)
-- noise_level (float, default: 0.95)
-- min_height (double, default: 0)
-- max_height (double, default: 3)
+- "ip_address" is an Ip address of a LiDAR
+#### resolution (double, default: 0.1756097561)
+- "resolution" is an angle offset that is added to vertical scanning after covering one vertical range.
+#### noise_level (float, default: 0.95)
+- Raw data from a LiDAR contains some non-object data (which is an error). "noise level" is a filter that removes those sparse errors.
+#### min_height (double, default: 0)
+- "min_height" is the minimum level that is displayed in the screen.
+#### max_height (double, default: 3)
+- "max_height is the maximum level that is displayed in the screen.
 - sensor_height (double, default: 1.2)
 - cutoff_height (double, default: 3)
 - max_vertical_angle (double, default: 0.7854)
