@@ -35,30 +35,30 @@ rospack profile
 ## ROS API
 - Package Name: yujin_lidar
 - Node Name: yujin_pub
-### Parameters
-#### ip_address (string, default:"192.168.1.251")
+### Parameters (Type, Default value, Unit)
+#### ip_address (string, "192.168.1.251", N/A)
 - An IP address of your LiDAR
-#### resolution (double, default: 0.1756097561, degree)
+#### resolution (double, 0.1756097561, degree)
 - An angle offset that is added to vertical scanning after covering one vertical range.
-#### noise_level (float, default: 0.95)
+#### noise_level (float, 0.95, N/A)
 - Raw data from a LiDAR contains some non-object data (which is an error). This is a filter that removes those sparse errors.
-#### min_height (double, default: 0, meter)
+#### min_height (double, 0, meter)
 - The minimum height level that is displayed on the screen.
-#### max_height (double, default: 3, meter)
+#### max_height (double, 3, meter)
 - The maximum height level that is displayed on the screen.
-#### cutoff_height (double, default: 3, meter)
+#### cutoff_height (double, 3, meter)
 - The upper height level where the data is cut on the screen. 
-#### sensor_height (double, default: 1.2, meter)
+#### sensor_height (double, 1.2, meter)
 - The height level where a LiDAR is placed.
-#### max_vertical_angle (double, default: 0.7854, radian)
+#### max_vertical_angle (double, 0.7854, radian)
 - The upper angle range of laser scan. The default value is +90 in degree.
-#### min_vertical_angle (double, default: -0.7854, radian)
+#### min_vertical_angle (double, -0.7854, radian)
 - The lower angle range of laser scan. The default value is -90 in degree.
-#### max_horizontal_angle (double, default: 1.570796, radian)
+#### max_horizontal_angle (double, 1.570796, radian)
 - The right angle range of laser scan. The default value is +180 in degree.
-#### min_horizontal_angle (double, default: -1.570796, radian)
+#### min_horizontal_angle (double, -1.570796, radian)
 - The left angle range of laser scan. The default value is -180 in degree.
-#### angle_offset (float, default: 0, radian)
+#### angle_offset (float, 0, radian)
 - A horizontal angle offset that is added to the point cloud data. The default value is 0.
 
 ## QUICK START
