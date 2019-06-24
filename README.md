@@ -36,6 +36,7 @@ rospack profile
 - Package Name: yujin_lidar
 - Node Name: yujin_pub
 ### Parameters (Type, Default value, Unit)
+If you do not specify parameters' values, default values will be used. Parameters with name "height" require exact values to be put in order to produce an exact picture of surroundings.
 #### ip_address (string, "192.168.1.251", N/A)
 - An IP address of your LiDAR
 #### resolution (double, 0.1756097561, degree)
@@ -59,7 +60,7 @@ rospack profile
 #### min_horizontal_angle (double, -1.570796, radian)
 - The left angle range of laser scan. The default value is -180 in degree.
 #### angle_offset (float, 0, radian)
-- A horizontal angle offset that is added to the point cloud data. The default value is 0.
+- A horizontal angle offset that is added to the point cloud data. Zero is recommended.
 
 ## QUICK START
 ```bash
