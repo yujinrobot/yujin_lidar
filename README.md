@@ -1,4 +1,3 @@
-![lidar](https://upload.wikimedia.org/wikipedia/commons/2/22/Yujin_lidar.jpg "Yujin Lidar")
 # Yujin LiDAR
 Official Website: http://lidar.yujinrobot.com/
 
@@ -81,4 +80,5 @@ rosrun rviz rviz
 - 2D/3D CAD
 
 ------------------------------------------------------------------------
+![lidar](https://upload.wikimedia.org/wikipedia/commons/2/22/Yujin_lidar.jpg "Yujin Lidar")
 ![Yujin Logo](https://upload.wikimedia.org/wikipedia/commons/0/0f/Yujinrobot_logo.png "Yujin Logo")
