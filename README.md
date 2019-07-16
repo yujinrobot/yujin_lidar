@@ -13,6 +13,8 @@ Yujin time-of-flight LiDAR is designed to measure distances from surroundings an
 - Author: Ju Young Kim
 - License: BSD
 
+![](ros_driver.gif)
+
 ## Supported Hardware
 
 - YRL2-05 (2D, 5m)
