@@ -6,6 +6,9 @@ Official Website: http://lidar.yujinrobot.com/
 Yujin time-of-flight LiDAR is designed to measure distances from surroundings and collect point cloud data. Yujin LiDAR is an optimized solution of indoor mapping, navigation, localization and other applications in the field of robotics, industries and safety & security.
 ![](slam_F1.gif)
 ![](slam_F1_2.gif)
+![](od_1.gif)
+![](od_2.gif)
+![](od_3.gif)
 
 ## ROS Package Maintenance
 
