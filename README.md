@@ -1,3 +1,6 @@
+![](SLAM_F1.gif)
+![](SLAM_F1_2.gif)
+
 # Yujin LiDAR
 Official Website: http://lidar.yujinrobot.com/
 
