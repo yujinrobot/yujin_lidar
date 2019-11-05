@@ -78,11 +78,12 @@ rosrun rviz rviz
 ```
 ## Additional Software
 ### Viewer
-#### Dependency Installation
+- Ubuntu 18.04 is required.
+#### For Linux: Dependency Installation
 ```bash
 sudo apt-get install qt5-default
 ```
-#### Quick Start For Viewer
+#### For Linux: Quick Start For Viewer
 ```bash
 cd dir_of_Yujin_Lidar_Viewer
 sudo chmod 777 Yujin_Lidar_Viewer
