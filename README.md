@@ -47,8 +47,8 @@ rospack profile
 - Node Name: yrl3_pub
 - Publisher Name : yrl3_pub
 - Topic Name : yrl3_cloud
-### Parameters (Type, Default value, Unit)
-YRL ROS driver imports YRL Linux driver. To get and set parameters of YRL ROS driver, please use APIs of YRL Linux driver explained in the manual.
+### Parameters
+YRL ROS driver imports YRL Linux driver. To get and set parameters of YRL ROS driver, please use APIs explained in the manual.
 
 ## QUICK START
 ```bash
