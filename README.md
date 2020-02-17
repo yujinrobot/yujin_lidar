@@ -45,6 +45,8 @@ rospack profile
 ## ROS API
 - Package Name: yujin_yrl3_package
 - Node Name: yrl3_pub
+- Publisher Name : yrl3_pub
+- Topic Name : yrl3_cloud
 ### Parameters (Type, Default value, Unit)
 If you do not specify parameters' values, default values will be used. Parameters with name "height" require exact values to be put in order to produce an exact picture of surroundings.
 #### ip_address (string, "192.168.1.251", N/A)
