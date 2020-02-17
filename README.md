@@ -3,7 +3,7 @@ Official Website: http://lidar.yujinrobot.com/
 
 ## About Yujin LiDAR
 
-Yujin time-of-flight LiDAR is designed to measure distances from surroundings and collect point cloud data. Yujin LiDAR is an optimized solution of indoor mapping, navigation, localization and other applications in the field of robotics, industries and safety & security.
+YRL series LiDAR is designed to detect objects, measure distances from surroundings and collect data as point clouds. Yujin LiDAR is an optimized solution for indoor mapping, navigation, localization and other applications in a variety of industries including robotics, safety and security.
 ## Videos of 3D SLAM and Obstacle Detection
 ![](slam_F1.gif)
 ![](slam_F1_2.gif)
@@ -23,8 +23,10 @@ Yujin time-of-flight LiDAR is designed to measure distances from surroundings an
 ## Supported Hardware
 
 - YRL2-05 (2D, 5m)
+- YRL2-15 (2D, 15m)
 - YRL2-25 (2D, 25m)
 - YRL3-05 (3D, 5m)
+- YRL3-15 (3D, 15m)
 - YRL3-25 (3D, 25m)
 
 ## ROS Package Installation
@@ -41,8 +43,8 @@ rospack profile
 ```
 
 ## ROS API
-- Package Name: yujin_lidar
-- Node Name: yujin_pub
+- Package Name: yujin_yrl3_package
+- Node Name: yrl3_pub
 ### Parameters (Type, Default value, Unit)
 If you do not specify parameters' values, default values will be used. Parameters with name "height" require exact values to be put in order to produce an exact picture of surroundings.
 #### ip_address (string, "192.168.1.251", N/A)
@@ -72,8 +74,8 @@ If you do not specify parameters' values, default values will be used. Parameter
 
 ## QUICK START
 ```bash
-rosrun yujin_lidar yujin_pub
-rostopic echo /yujin3d/yujin_cloud
+rosrun yujin_yrl3_package yrl3_pub
+rostopic echo /yrl3_pub/yrl3_cloud
 rosrun rviz rviz
 ```
 ## Additional Software
