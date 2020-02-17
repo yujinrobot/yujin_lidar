@@ -18,7 +18,7 @@ YRL series LiDAR is designed to detect objects, measure distances from surroundi
 - Author: Ju Young Kim
 - License: BSD
 
-![](ros_driver.gif)
+![](github_rosdriver.gif)
 
 ## Supported Hardware
 
