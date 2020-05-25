@@ -23,11 +23,11 @@ YRL series LiDAR is designed to detect objects, measure distances from surroundi
 ## Supported Hardware
 
 - YRL2-05 (2D, 5m)
-- YRL2-15 (2D, 15m)
-- YRL2-25 (2D, 25m)
+- YRL2-10 (2D, 10m)
+- YRL2-20 (2D, 20m)
 - YRL3-05 (3D, 5m)
-- YRL3-15 (3D, 15m)
-- YRL3-25 (3D, 25m)
+- YRL3-10 (3D, 10m)
+- YRL3-20 (3D, 20m)
 
 ## ROS Package Installation
 
