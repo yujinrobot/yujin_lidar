@@ -66,7 +66,7 @@ sudo apt-get install qt5-default
 #### For Linux: Quick Start For Viewer
 ```bash
 cd dir_of_Yujin_Lidar_Viewer
-sudo -H ./Yujin_Lidar_Viewer
+sudo -H ./Yujin_Lidar_Viewer.sh
 ```
 ## Documents
 - Catalog
