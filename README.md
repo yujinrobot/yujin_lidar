@@ -43,17 +43,17 @@ rospack profile
 ```
 
 ## ROS API
-- Package Name: yujin_yrl3_package
-- Node Name: yrl3_pub
-- Publisher Name : yrl3_pub
-- Topic Name : yrl3_cloud
+- Package Name: yujin_yrl_package
+- Node Name: yrl_pub
+- Publisher Name : yrl_pub
+- Topic Name : yrl_cloud
 ### Parameters
 YRL ROS driver imports YRL Linux driver. To get and set parameters of YRL ROS driver, please use APIs explained in the manual.
 
 ## QUICK START
 ```bash
-rosrun yujin_yrl3_package yrl3_pub
-rostopic echo /yrl3_pub/yrl3_cloud
+rosrun yujin_yrl_package yrl_pub
+rostopic echo /yrl_pub/yrl_cloud
 rosrun rviz rviz
 ```
 ## Additional Software
@@ -66,11 +66,8 @@ sudo apt-get install qt5-default
 #### For Linux: Quick Start For Viewer
 ```bash
 cd dir_of_Yujin_Lidar_Viewer
-sudo chmod 777 Yujin_Lidar_Viewer
-./Yujin_Lidar_Viewer
+sudo -H ./Yujin_Lidar_Viewer
 ```
-
-- IP Address Chaning Tool
 ## Documents
 - Catalog
 - User manual
