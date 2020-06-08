@@ -1,0 +1,16 @@
+Total Solution Provider for autonomous mobility, Yujin Robot.
+Yujin Lidar Viewer 1.0.0
+
+This software uses 
+- Qtbase libraries under the GNU LGPL version 3 license.Qt 5.9.5 source code is available from https://download.qt.io/official_releases/qt/5.9/5.9.5/
+- Eigen library under the MPL 2.0 license. You can get the source code from http://eigen.tuxfamily.org/index.php?title=Main_Page
+- Sophus library from https://github.com/strasdat/Sophus
+- Open source computer vision library under the 3-clause BSD license.
+- icons from https://icons8.com
+
+In this folder,
+
+- Qt License Notes - Copies of LGPL v3 and GPL v3 licenses
+- OpenCV License Notes - Copies of 3-clause BSD License, copyright notice and list of conditions
+
+are available.
