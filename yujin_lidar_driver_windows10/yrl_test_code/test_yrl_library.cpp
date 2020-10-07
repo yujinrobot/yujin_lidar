@@ -105,21 +105,21 @@ int main()
     double rotation_per_sec;
 
     /// Simple parameter set functions
-    instance->setSensorHeight(1.5);
-    instance->setMaxRange(30);
-    instance->setUpperDataLimit(4);
-    instance->setLowerDataLimit(-2);
-    instance->setMaxVerticalAngle(30);
-    instance->setMinVerticalAngle(-30);
-    instance->setMaxHorizontalAngle(135);
-    instance->setMinHorizontalAngle(-135);
-    instance->setCurrentFilterLevel(0);
+    instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
+    instance->setMaxRange(30); /// max range of 30m
+    instance->setUpperDataLimit(4); /// Data upper limit of 4 when the sensor is at 1.5m height
+    instance->setLowerDataLimit(-2); /// Data lower limit of -2 when the sensor is at 1.5m height
+    instance->setMaxVerticalAngle(45); /// default value of 45 (total 90 degrees of vertical FOV)
+    instance->setMinVerticalAngle(-45); /// default value of -45 (total 90 degrees of vertical FOV)
+    instance->setMaxHorizontalAngle(135); /// default value of 135 (total 270 degrees of horizontal FOV)
+    instance->setMinHorizontalAngle(-135); /// default value of -135 (total 270 degrees of horizontal FOV)
+    instance->setCurrentFilterLevel(0.01); /// Default filter level is 0.01. Depending on user applications, this filter level may need to be adjusted.
 
     std::cout << "\nAfter Setting-----------------------------------------------------------------------------------------------\n" << std::endl;
 
     /// Making a finite loop
     int timer(0);
-    int period(10);
+    int period(40);
     int total_loop(1000 * period);
 
     /// Buffers for getting output data

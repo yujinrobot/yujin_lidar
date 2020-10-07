@@ -78,7 +78,7 @@ int main()
 
     /// Creating a finite loop
     int timer(0);
-    int period(10);
+    int period(40);
     int total_loop(1000 * period);
 
     /// Buffers to get output data

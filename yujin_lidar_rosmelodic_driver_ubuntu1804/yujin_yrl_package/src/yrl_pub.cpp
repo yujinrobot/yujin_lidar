@@ -130,14 +130,15 @@ int main(int argc, char **argv)
     instance->setCalibrationFilePath("/home/jykim/catkin_ws/lktest.bin");
     
     /// Simple parameter set functions
-    instance->setSensorHeight(1.5);
-    instance->setUpperDataLimit(4);
-    instance->setLowerDataLimit(0);
-    instance->setMaxVerticalAngle(45);
-    instance->setMinVerticalAngle(-45);
-    instance->setMaxHorizontalAngle(135);
-    instance->setMinHorizontalAngle(-135);
-    instance->setCurrentFilterLevel(0.01);
+    instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
+    instance->setMaxRange(30); /// max range of 30m
+    instance->setUpperDataLimit(4); /// Data upper limit of 4 when the sensor is at 1.5m height
+    instance->setLowerDataLimit(-2); /// Data lower limit of -2 when the sensor is at 1.5m height
+    instance->setMaxVerticalAngle(45); /// default value of 45 (total 90 degrees of vertical FOV)
+    instance->setMinVerticalAngle(-45); /// default value of -45 (total 90 degrees of vertical FOV)
+    instance->setMaxHorizontalAngle(135); /// default value of 135 (total 270 degrees of horizontal FOV)
+    instance->setMinHorizontalAngle(-135); /// default value of -135 (total 270 degrees of horizontal FOV)
+    instance->setCurrentFilterLevel(0.01); /// Default filter level is 0.01. Depending on user applications, this filter level may need to be adjusted.
     
     /// get upper_data_limit & lower_data_limit for coloring point clouds in rviz.
     float upper_data_limit;
