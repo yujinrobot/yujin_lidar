@@ -19,9 +19,9 @@
 
 int main()
 {
-    std::cout << "=======================================" << std::endl;
-    std::cout << "Test YRL driver                       " << std::endl;
-    std::cout << "=======================================\n" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "           Test YRL driver          " << std::endl;
+    std::cout << "========================================\n" << std::endl;
 
     /// Load the dynamic library
     HINSTANCE handle_to_dll = ::LoadLibrary(TEXT("yrl_library.dll"));
@@ -120,7 +120,7 @@ int main()
     /// Making a finite loop
     int timer(0);
     int period(40);
-    int total_loop(1000 * period);
+    int total_loop(10000000 * period);
 
     /// Buffers for getting output data
     std::vector<float> buffer_x, buffer_y, buffer_z;
