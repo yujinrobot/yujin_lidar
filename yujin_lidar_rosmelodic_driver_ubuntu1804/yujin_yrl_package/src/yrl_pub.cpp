@@ -55,40 +55,8 @@
 #include "yrl_library.hpp"
 #include <dlfcn.h>
 #include <ros/ros.h>
-#include <sensor_msgs/PointCloud.h>
 #include <tf/transform_broadcaster.h>
-
-void ValueToRgb(const float aValue, float &r, float &g, float &b)
-{
-    float value( aValue );
-    if( value < 0.0f ) value = 0.0f;
-    else if( value > 1.0f ) value = 1.0f;
-
-    if( value < 0.25f )
-    {
-        r = 1.0f;
-        g = value / 0.25f;
-        b = 0.0f;
-    }
-    else if( value < 0.5f )
-    {
-        r = 1.0f - (value-0.25f) / 0.25f;
-        g = 1.0f;
-        b = 0.0f;
-    }
-    else if( value < 0.75f )
-    {
-        r = 0.0f;
-        g = 1.0f;
-        b = (value-0.5f)/0.25f;
-    }
-    else
-    {
-        r = 0.0f;
-        g = 1.0f - (value-0.75f)/0.25f;
-        b = 1.0f;
-    }
-}
+#include <sensor_msgs/PointCloud2.h>
 
 int main(int argc, char **argv)
 {
@@ -127,7 +95,7 @@ int main(int argc, char **argv)
     /// Set LiDAR's IP address as an input IP address for driver
     instance->setInputIpAddress("192.168.1.250");
     /// Set LiDAR's Calibration File Path
-    instance->setCalibrationFilePath("/home/jykim/catkin_ws/lktest.bin");
+    instance->setCalibrationFilePath("/home/jykim/catkin_ws/lk_serial_no.bin");
     
     /// Simple parameter set functions
     instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
@@ -140,12 +108,6 @@ int main(int argc, char **argv)
     instance->setMinHorizontalAngle(-135); /// default value of -135 (total 270 degrees of horizontal FOV)
     instance->setCurrentFilterLevel(0.01); /// Default filter level is 0.01. Depending on user applications, this filter level may need to be adjusted.
     
-    /// get upper_data_limit & lower_data_limit for coloring point clouds in rviz.
-    float upper_data_limit;
-    instance->getUpperDataLimit(upper_data_limit);
-    float lower_data_limit;
-    instance->getLowerDataLimit(lower_data_limit);
-    
     /// initialize a node
     ros::init(argc, argv, "yrl_pub");
     
@@ -153,24 +115,9 @@ int main(int argc, char **argv)
     ros::NodeHandle nh("~");
 
     /// Publisher yrl_pub
-    ros::Publisher yrl_pub = nh.advertise<sensor_msgs::PointCloud>("yrl_cloud",100);
+    ros::Publisher yrl_pub = nh.advertise<sensor_msgs::PointCloud2>("yrl_cloud", 2);
+	const uint32_t point_size = 16;
 
-    /// Point Cloud Message
-    sensor_msgs::PointCloud cloud;
-    cloud.header.frame_id = std::string("yrl_cloud_id");
-    cloud.header.stamp = ros::Time::now();
-    /// Point Cloud Coordinate and Color
-    geometry_msgs::Point32 point;
-    sensor_msgs::ChannelFloat32 channel_r;
-    sensor_msgs::ChannelFloat32 channel_g;
-    sensor_msgs::ChannelFloat32 channel_b;    
-    channel_r.name=std::string("r");
-    channel_g.name=std::string("g");
-    channel_b.name=std::string("b");
-    cloud.channels.push_back(channel_r);
-    cloud.channels.push_back(channel_g);
-    cloud.channels.push_back(channel_b);
-    
     /// tf
     static tf::TransformBroadcaster br;
     tf::Transform transform;
@@ -180,9 +127,7 @@ int main(int argc, char **argv)
     transform.setRotation(q);
 
     /// Buffers for getting output data
-    std::vector<float> buffer_x, buffer_y, buffer_z;
-    std::vector<float> intensity, range, horizontal_a, vertical_a;
-    float rr(0), gg(0), bb(0);
+    std::vector<float> buffer_x, buffer_y, buffer_z, buffer_i;
 
     /// Error code string
     std::string error_code_string("");
@@ -190,58 +135,68 @@ int main(int argc, char **argv)
     std::string error;
     std::vector <std::string> errors;
 
-    ros::Rate loop_rate(60); ///previous value = 1000Hz
+    ros::Rate loop_rate(22); ///22Hz loop rate
     
     while(ros::ok())
     {
-        instance->getCartesianOutputs(buffer_x, buffer_y, buffer_z);
-        int size_buffer(static_cast<int>(buffer_x.size()));
-        
-        for (int i(0); i < size_buffer; i++)
-        {
-            /// Getting coordinates of each point cloud
-            point.x = buffer_x.at(i);
-            point.y = buffer_y.at(i);
-            point.z = buffer_z.at(i);
-            cloud.points.push_back(point);
-            
-            /// Coloring each point cloud for 3D and 2D
-            unsigned int model_no(0);
-            instance->fwGetModelNo(model_no);
-            if(model_no == 4 || model_no == 5 || model_no == 6) /// 2D
-            {
-                rr = 1.0f;
-                gg = 1.0f;
-                bb = 1.0f;
-            }
-            else
-            {
-                ///3D
-                ValueToRgb(point.z/(upper_data_limit-lower_data_limit), rr, gg, bb);
-            }
-            
-            cloud.channels[0].values.push_back(rr);
-            cloud.channels[1].values.push_back(gg);
-            cloud.channels[2].values.push_back(bb);            
-        }
+        instance->getCartesianOutputsWithIntensity(buffer_i, buffer_x, buffer_y, buffer_z);
+        int size_buffer(static_cast<int>(buffer_x.size()));     
 
         /// Publish a group of point clouds
+		sensor_msgs::PointCloud2 cloud;
+		cloud.header.frame_id = std::string("yrl_cloud_id");
         cloud.header.stamp = ros::Time::now();
+
+        cloud.fields.resize(4);
+		cloud.fields[0].name = "x";
+		cloud.fields[0].offset = 0;
+		cloud.fields[0].datatype = sensor_msgs::PointField::FLOAT32;
+		cloud.fields[0].count = 1;
+
+		cloud.fields[1].name = "y";
+		cloud.fields[1].offset = 4;
+		cloud.fields[1].datatype = sensor_msgs::PointField::FLOAT32;
+		cloud.fields[1].count = 1;
+
+		cloud.fields[2].name = "z";
+		cloud.fields[2].offset = 8;
+		cloud.fields[2].datatype = sensor_msgs::PointField::FLOAT32;
+		cloud.fields[2].count = 1;
+
+		cloud.fields[3].name = "intensity";
+		cloud.fields[3].offset = 12;
+		cloud.fields[3].datatype = sensor_msgs::PointField::FLOAT32;
+		cloud.fields[3].count = 1;
+
+		cloud.data.resize(std::max(1, size_buffer) * point_size, 0x00);
+		cloud.point_step = point_size;
+		cloud.row_step = cloud.data.size();
+		cloud.height = 1;
+		cloud.width = cloud.row_step / point_size;
+		cloud.is_bigendian = false;
+		cloud.is_dense = true;
+	  
+	    uint8_t *ptr = cloud.data.data();
+		for (int i(0); i < size_buffer; i++)
+		{
+			*(reinterpret_cast<float*>(ptr +  0)) = buffer_x[i];
+			*(reinterpret_cast<float*>(ptr +  4)) = buffer_y[i];
+			*(reinterpret_cast<float*>(ptr +  8)) = buffer_z[i];
+			*(reinterpret_cast<float*>(ptr + 12)) = buffer_i[i];
+			ptr += point_size;
+		}
+
         yrl_pub.publish(cloud);
-        
+        buffer_x.clear();
+        buffer_y.clear();
+        buffer_z.clear();
+        buffer_i.clear();
+
         /// Send Transform
         br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "map", "yrl_cloud_id"));
-
-        /// Clear buffers for point clouds
-        cloud.points.clear();
-        cloud.channels[0].values.clear();
-        cloud.channels[1].values.clear();
-        cloud.channels[2].values.clear();
-        
         
         /// Error Check
-        instance->getErrorCode(error_code_string);
-        
+        instance->getErrorCode(error_code_string);       
 //         std::cout<<"Error Code : "<<error_code_string<<std::endl;
         
         error_stream = std::istringstream(error_code_string);

@@ -19,7 +19,7 @@
 #include <iostream>
 #include <dlfcn.h>
 
-int main()
+int main( int argc, char ** argv)
 {
     std::cout << "========================================" << std::endl; 
     std::cout << "           Test YRL driver          " << std::endl; 
@@ -58,7 +58,7 @@ int main()
     instance->start();
 
     /// Set LiDAR's IP address as an input IP address for driver
-    instance->setInputIpAddress("192.168.1.250");
+    instance->setInputIpAddress(argv[1]);
     /// Set LiDAR's Calibration File Path
     instance->setCalibrationFilePath("/home/jykim/lktest.bin");
 
@@ -125,7 +125,7 @@ int main()
     /// Making a finite loop
     int timer(0);
     int period(40);
-    int total_loop(10000000 * period);
+    int total_loop(11000000 * period);
 
     /// Buffers for getting output data
     std::vector<float> buffer_x, buffer_y, buffer_z;

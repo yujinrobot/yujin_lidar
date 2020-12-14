@@ -145,6 +145,7 @@ public:
     virtual void getConnectionState(bool& connection_state) = 0;
     virtual void getRPS(double& rotation_per_sec) = 0;
     virtual void getCartesianOutputs(std::vector <float>& output_x, std::vector <float>& output_y, std::vector <float>& output_z) = 0;
+    virtual void getCartesianOutputsWithIntensity(std::vector <float>& intensity, std::vector <float>& output_x, std::vector <float>& output_y, std::vector <float>& output_z) = 0;
     virtual void getSphericalOutputs(std::vector <float>& range, std::vector <float>& horizontal_ang, std::vector <float>& vertical_ang) = 0;
     virtual void getSphericalOutputsWithIntensity(std::vector <float>& intensity, std::vector <float>& range, std::vector <float>& horizontal_ang, std::vector <float>& vertical_ang) = 0;
 
