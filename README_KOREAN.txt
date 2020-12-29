@@ -1,5 +1,9 @@
 ﻿(주)유진로봇 김주영 개발자 (jykim3 [at] yujinrobot.com)
 
+S/W 사용시 문의 사항은 해당 메일로 부탁드립니다.
+한국 : andyjun [at] yujinrobot.com
+해외 : hjyi [at] yujinrobot.com
+
 * 해당 YRL_SW_Package 는 
 1) Windows 10 Driver
 2) Windows 10 Viewer

@@ -1,5 +1,9 @@
 ﻿YUJIN ROBOT Co.,Ltd. Ju Young Kim (jykim3 [at] yujinrobot.com)
 
+Any inquiries to mail addresses below.
+Korea : andyjun [at] yujinrobot.com
+Other Countries : hjyi [at] yujinrobot.com
+
 * This YRL_SW_Package contains total 5 SWs.
 1) Windows 10 Driver
 2) Windows 10 Viewer
