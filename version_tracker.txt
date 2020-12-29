@@ -1,0 +1,14 @@
+YRL SW Version Tracker
+
+Viewer Change Notes
+Ver 1.0.0 2020.06.04 First Released Viewer and Driver
+Ver 1.1.0 2020.07.02 New Communication Protocol.
+Ver 1.2.0 2020.09.24 Improved Data Filtering Algorithm.
+Ver 1.3.0 2020.11.11 Improved S/W Communication with LiDAR.
+
+Driver Change Notes
+Ver 1.0.0 2020.06.04 First Released Viewer and Driver
+Ver 1.1.0 2020.07.02 New Communication Protocol.
+Ver 1.2.0 2020.09.24 Improved Data Filtering Algorithm.
+Ver 1.3.0 2020.11.11 Improved S/W Communication with LiDAR.
+Ver 1.4.0 2020.12.14 New function "getCartesianOutputsWithIntensity()" added. ROS1 Pointcloud1 Data Type Deleted. ROS1 Pointcloud2 Data Type Supported.
