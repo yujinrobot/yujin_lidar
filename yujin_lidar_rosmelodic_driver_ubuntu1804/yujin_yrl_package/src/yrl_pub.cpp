@@ -95,7 +95,7 @@ int main(int argc, char **argv)
     /// Set LiDAR's IP address as an input IP address for driver
     instance->setInputIpAddress("192.168.1.250");
     /// Set LiDAR's Calibration File Path
-    instance->setCalibrationFilePath("/home/jykim/catkin_ws/lk_serial_no.bin");
+    instance->setCalibrationFilePath("lk.bin");
     
     /// Simple parameter set functions
     instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
