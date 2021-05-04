@@ -15,8 +15,8 @@
 *  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OFOR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 *********************************************************************/
 
-#ifndef YRL_LIBRARY_H
-#define YRL_LIBRARY_H
+#ifndef YRL_LIBRARY_HPP_
+#define YRL_LIBRARY_HPP_
 
 #if defined _WIN32 || defined __CYGWIN__
 #ifdef YRL_LIBRARY_EXPORTS
@@ -73,9 +73,9 @@
 #define MASTER_DES_SIGNAUTRE2           0x02
 #define MASTER_DES_SIGNAUTRE3           0x02
 
-#define MASTER_DES_PARAMETERS        				0
-#define MASTER_DES_COMMANDS           			1
-#define MASTER_DES_FEEDBACKS           			2
+#define MASTER_DES_PARAMETERS                       0
+#define MASTER_DES_COMMANDS                     1
+#define MASTER_DES_FEEDBACKS                    2
 #define MASTER_DES_REQUEST_PARAMETERS       3
 #define MASTER_DES_UPDATED_PARAMETERS       4
 
@@ -96,11 +96,21 @@
 #include <mutex>
 #include <atomic>
 
+#ifdef _WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <windows.h>
 #include <io.h>
-#include <winsock.h>
-#pragma comment(lib,"WS2_32")
-//#pragma warning(disable:4244) 
+#pragma comment(lib, "Ws2_32.lib")
+#pragma warning(disable:4244) 
+#else
+#include <sys/socket.h>
+//#include <sys/types.h>
+#include <arpa/inet.h>
+#include <netdb.h>  /* Needed for getaddrinfo() and freeaddrinfo() */
+#include <unistd.h> /* Needed for close() */
+//#include <netinet/in.h>   
+#endif
 
 class YRL_Library
 {
@@ -142,6 +152,12 @@ public:
     virtual void setCurrentFilterLevel(float filter_level) = 0; /// Only for 3D
 
     ///Output Read Interface
+    /*
+    virtual int getThreadCount() = 0;
+    virtual int getSuccessfulCommCount() = 0;
+    virtual int getDataCount() = 0;
+    virtual int getDprCount() = 0;
+    */
     virtual void getConnectionState(bool& connection_state) = 0;
     virtual void getRPS(double& rotation_per_sec) = 0;
     virtual void getCartesianOutputs(std::vector <float>& output_x, std::vector <float>& output_y, std::vector <float>& output_z) = 0;
@@ -171,4 +187,4 @@ typedef void(__cdecl* yrl_destroyer) (YRL_Library*);
 
 extern "C" YRL_LIBRARYSHARED_EXPORT YRL_Library * createYrlLib();
 extern "C" YRL_LIBRARYSHARED_EXPORT void destroyYrlLib(YRL_Library * lib);
-#endif // YRL_LIBRARY_H
+#endif // YRL_LIBRARY_HPP_

@@ -1,17 +1,17 @@
 /*********************************************************************
 *  Copyright (c) 2020, YujinRobot Corp.
-*  
+*
 *  Ju Young Kim, jykim3@yujinrobot.com
-*  
+*
 *  Non-monifiable freely redistributable software(FRS)
-*  
+*
 *  - Redistribution. Redistribution and use in binary form, without modification,
 *    are permitted provided that the following conditions are met:
 *  - Redistributions must reproduce the above copyright notice and the following
 *    disclaimer in the documentation and/or other materials provided with the distribution.
 *  - Neither the name of YujinRobot Corporation nor the names of its suppliers may be used
 *    to endorse or promote products derived from this software without specific prior written permission.
-*  
+*
 *  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OFOR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 *********************************************************************/
 
@@ -19,28 +19,28 @@
 #define YRL_LIBRARY_HPP_
 
 #if defined _WIN32 || defined __CYGWIN__
-  #ifdef YRL_LIBRARY_EXPORTS
-    #ifdef __GNUC__
-      #define YRL_LIBRARYSHARED_EXPORT __attribute__ ((dllexport))
-    #else
-      #define YRL_LIBRARYSHARED_EXPORT __declspec(dllexport)
-    #endif
-  #else
-    #ifdef __GNUC__
-      #define YRL_LIBRARYSHARED_EXPORT __attribute__ ((dllimport))
-    #else
-      #define YRL_LIBRARYSHARED_EXPORT __declspec(dllimport)
-    #endif
-  #endif
-  #define YRL_LIBRARYSHARED_NO_EXPORT
+#ifdef YRL_LIBRARY_EXPORTS
+#ifdef __GNUC__
+#define YRL_LIBRARYSHARED_EXPORT __attribute__ ((dllexport))
 #else
-  #if __GNUC__ >= 4
-    #define YRL_LIBRARYSHARED_EXPORT __attribute__ ((visibility ("default")))
-    #define YRL_LIBRARYSHARED_NO_EXPORT  __attribute__ ((visibility ("hidden")))
-  #else
-    #define YRL_LIBRARYSHARED_EXPORT
-    #define YRL_LIBRARYSHARED_NO_EXPORT
-  #endif
+#define YRL_LIBRARYSHARED_EXPORT __declspec(dllexport)
+#endif
+#else
+#ifdef __GNUC__
+#define YRL_LIBRARYSHARED_EXPORT __attribute__ ((dllimport))
+#else
+#define YRL_LIBRARYSHARED_EXPORT __declspec(dllimport)
+#endif
+#endif
+#define YRL_LIBRARYSHARED_NO_EXPORT
+#else
+#if __GNUC__ >= 4
+#define YRL_LIBRARYSHARED_EXPORT __attribute__ ((visibility ("default")))
+#define YRL_LIBRARYSHARED_NO_EXPORT  __attribute__ ((visibility ("hidden")))
+#else
+#define YRL_LIBRARYSHARED_EXPORT
+#define YRL_LIBRARYSHARED_NO_EXPORT
+#endif
 #endif
 
 #ifdef __GNUC__
@@ -73,9 +73,9 @@
 #define MASTER_DES_SIGNAUTRE2           0x02
 #define MASTER_DES_SIGNAUTRE3           0x02
 
-#define MASTER_DES_PARAMETERS        				0
-#define MASTER_DES_COMMANDS           			1
-#define MASTER_DES_FEEDBACKS           			2
+#define MASTER_DES_PARAMETERS                       0
+#define MASTER_DES_COMMANDS                     1
+#define MASTER_DES_FEEDBACKS                    2
 #define MASTER_DES_REQUEST_PARAMETERS       3
 #define MASTER_DES_UPDATED_PARAMETERS       4
 
@@ -109,7 +109,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>  /* Needed for getaddrinfo() and freeaddrinfo() */
 #include <unistd.h> /* Needed for close() */
-//#include <netinet/in.h>	
+//#include <netinet/in.h>   
 #endif
 
 class YRL_Library
@@ -152,6 +152,12 @@ public:
     virtual void setCurrentFilterLevel(float filter_level) = 0; /// Only for 3D
 
     ///Output Read Interface
+    /*
+    virtual int getThreadCount() = 0;
+    virtual int getSuccessfulCommCount() = 0;
+    virtual int getDataCount() = 0;
+    virtual int getDprCount() = 0;
+    */
     virtual void getConnectionState(bool& connection_state) = 0;
     virtual void getRPS(double& rotation_per_sec) = 0;
     virtual void getCartesianOutputs(std::vector <float>& output_x, std::vector <float>& output_y, std::vector <float>& output_z) = 0;
