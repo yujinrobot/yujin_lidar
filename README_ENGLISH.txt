@@ -1,4 +1,4 @@
-﻿YUJIN ROBOT Co.,Ltd. Ju Young Kim (jykim3 [at] yujinrobot.com)
+﻿YUJIN ROBOT Co.,Ltd. Hyeon Jeong Kim (hjkim2 [at] yujinrobot.com)
 
 Any inquiries to mail addresses below.
 Korea : andyjun [at] yujinrobot.com
@@ -12,7 +12,7 @@ Other Countries : hjyi [at] yujinrobot.com
 5) Ubuntu 18.04 ROS Melodic Driver
 
 * SW Common Notice
-1) These SWs support only 64 bit environment.
+1) These SWs support only 64 bit environment (x86_64).
 2) Connect the product to a power source, and to a computer using ethernet cable. Set your computer ethernet network address (IPv4) to 192.168.1.x and subnet mask to 255.255.255.0. (YRL Series LiDAR has a default ip address, 192.168.1.250)
 3) Calibration file is a unique data file for each LiDAR product to measure distances, so it is essential to import a calibration file at first. Each LiDAR product has its own unique calibration file. The name of the calibration file will be lk+serial number(12 digits).bin
 4) These SWs all need to refer a calibration file of a certain LiDAR sample. Each LiDAR sample's calibration file can be created by "Create a Calibration File" button of Windows 10/Ubuntu 18.04 Viewer.
@@ -31,6 +31,7 @@ sudo -H ./Yujin_Lidar_Viewer.sh
 
 * Driver Notice
 In case of 2D, filter is automatically fixed to 0.01, sensor height to 0.2 and functions related to vertical level are automatically disabled. Also when using 2D LiDAR, please ignore vertical angle values of getSphericalOutputs functions and z values of getCartesianOutputs function.
+Before you call start() function that creates and starts a thread, you should configure basic settings using setInputIpAddress() and setCalibrationFilePath().
 
 * Windows 10 Driver Build Environment
 Windows 10 Driver for YRL Series is written in C++, and was compiled using : 
@@ -74,6 +75,9 @@ This prints out range values of detected objects within plus minus 5 degrees of 
 4) test_error_code.cpp
 - This can test basic error code of YRL series LiDARs.
 When started, error H is automatically created. This peridically gets error values using getErrorCode function, and when there are errors, it prints logs related to errors.
+
+5) test_multilidar_operation.cpp
+- This can read output data from multiple number of lidars using one driver application.
 
 * ROS Melodic Driver Notice
 1) Please refer to the guide in : https://github.com/yujinrobot/yujin_lidar

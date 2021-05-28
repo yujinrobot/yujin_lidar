@@ -1,21 +1,22 @@
 /*********************************************************************
 *  Copyright (c) 2020, YujinRobot Corp.
-*  
-*  Ju Young Kim, jykim3@yujinrobot.com
-*  
+*
+*  Hyeon Jeong Kim, hjkim2@yujinrobot.com
+*
 *  Non-monifiable freely redistributable software(FRS)
-*  
+*
 *  - Redistribution. Redistribution and use in binary form, without modification,
 *    are permitted provided that the following conditions are met:
 *  - Redistributions must reproduce the above copyright notice and the following
 *    disclaimer in the documentation and/or other materials provided with the distribution.
 *  - Neither the name of YujinRobot Corporation nor the names of its suppliers may be used
 *    to endorse or promote products derived from this software without specific prior written permission.
-*  
+*
 *  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OFOR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 *********************************************************************/
-#include <iostream>
-#include "yrl_library.h"
+
+#include <iostream> 
+#include "yrl_library.h" 
 
 int main()
 {
@@ -23,15 +24,15 @@ int main()
     std::cout << "           Test YRL driver          " << std::endl;
     std::cout << "========================================\n" << std::endl;
 
-    /// Load the dynamic library
-    HINSTANCE handle_to_dll = ::LoadLibrary(TEXT("yrl_library.dll"));
+    /// Load the dynamic library 
+    HINSTANCE handle_to_dll = ::LoadLibrary(TEXT("YRL_Library.dll"));
     if (!handle_to_dll)
     {
         std::cerr << "\nCannot load DLL\n";
         return 1;
     }
 
-    /// Get two functions from the library
+    /// Get two functions from the library 
     yrl_producer producing_func = reinterpret_cast<yrl_producer>(::GetProcAddress(handle_to_dll, "createYrlLib"));
     if (!producing_func)
     {
@@ -50,12 +51,12 @@ int main()
 
     /// Using factory function, create a new YRL_Library object
     YRL_Library* instance = producing_func();
-    instance->start();
-
     /// Set LiDAR's IP address as an input IP address for driver
     instance->setInputIpAddress("192.168.1.250");
     /// Set LiDAR's Calibration File Path
-    instance->setCalibrationFilePath("C:/Users/jykim/lktest.bin");
+    instance->setCalibrationFilePath("C:/Users/userdirectory/lk_test.bin");
+
+    instance->start();
 
     /// Simple parameter get functions
     std::string inputIpAddress;
@@ -105,7 +106,7 @@ int main()
     double rotation_per_sec;
 
     /// Simple parameter set functions
-    instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
+    instance->setSensorHeight(1.0); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
     instance->setMaxRange(30); /// max range of 30m
     instance->setUpperDataLimit(4); /// Data upper limit of 4 when the sensor is at 1.5m height
     instance->setLowerDataLimit(-2); /// Data lower limit of -2 when the sensor is at 1.5m height
@@ -113,14 +114,14 @@ int main()
     instance->setMinVerticalAngle(-45); /// default value of -45 (total 90 degrees of vertical FOV)
     instance->setMaxHorizontalAngle(135); /// default value of 135 (total 270 degrees of horizontal FOV)
     instance->setMinHorizontalAngle(-135); /// default value of -135 (total 270 degrees of horizontal FOV)
-    instance->setCurrentFilterLevel(0.01); /// Default filter level is 0.01. Depending on user applications, this filter level may need to be adjusted.
+    instance->setCurrentFilterLevel(0.03); /// Default filter level is 0.01. 0.03 is recommended, for most cases.
 
     std::cout << "\nAfter Setting-----------------------------------------------------------------------------------------------\n" << std::endl;
 
     /// Making a finite loop
     int timer(0);
     int period(40);
-    int total_loop(10000000 * period);
+    int total_loop(11000000 * period);
 
     /// Buffers for getting output data
     std::vector<float> buffer_x, buffer_y, buffer_z;

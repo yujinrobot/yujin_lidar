@@ -1,7 +1,7 @@
 /*********************************************************************
 *  Copyright (c) 2020, YujinRobot Corp.
 *  
-*  Ju Young Kim, jykim3@yujinrobot.com
+*  Hyeon Jeong Kim, hjkim2@yujinrobot.com
 *
 *  Software License Agreement (BSD License)
 *
@@ -38,7 +38,7 @@
 /*********************************************************************
 *  Copyright (c) 2020, YujinRobot Corp.
 *  
-*  Ju Young Kim, jykim3@yujinrobot.com
+*  Hyeon Jeong Kim, hjkim2@yujinrobot.com
 *  
 *  Non-monifiable freely redistributable software(FRS)
 *  
@@ -90,12 +90,11 @@ int main(int argc, char **argv)
     
     /// Using factory function, create a new YRL_Library object
     YRL_Library* instance = producing_func();
-    instance->start();
-
     /// Set LiDAR's IP address as an input IP address for driver
     instance->setInputIpAddress("192.168.1.250");
     /// Set LiDAR's Calibration File Path
-    instance->setCalibrationFilePath("/home/jykim/catkin_ws/lk_serial_no.bin");
+    instance->setCalibrationFilePath("/home/yourdirectory/lk_test.bin");
+    instance->start();
     
     /// Simple parameter set functions
     instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m

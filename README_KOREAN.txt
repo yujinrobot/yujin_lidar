@@ -1,4 +1,4 @@
-﻿(주)유진로봇 김주영 개발자 (jykim3 [at] yujinrobot.com)
+﻿(주)유진로봇 김현정 개발자 (hjkim2 [at] yujinrobot.com)
 
 S/W 사용시 문의 사항은 해당 메일로 부탁드립니다.
 한국 : andyjun [at] yujinrobot.com
@@ -13,7 +13,7 @@ S/W 사용시 문의 사항은 해당 메일로 부탁드립니다.
 총 5개의 SW를 포함하고 있다.
 
 * SW 공통 유의사항
-1) 모든 SW는 64비트 환경만을 지원한다.
+1) 모든 SW는 64비트 환경(x86_64)만을 지원한다.
 2) YRL 라이다에 파워를 주고 이더넷 포트에 케이블을 연결한 뒤, 컴퓨터 이더넷 네트워크를 수동으로 192.168.1 점대로 맞춘다. (YRL 시리즈의 기본 IP 주소는 192.168.1.250 이다.)
 3) 켈리브레이션 파일은 각 라이다 시료의 거리를 재기위한 고유의 데이터 파일이다. 모든 라이다는 자기 고유의 켈리브레이션 파일을 가지고 있으며, 케리브레이션 파일의 이름은 lk+시리얼번호(12자리).bin 이다.
 4) 해당 SW들은 다 해당 시료의 calibration file 의 참조를 필요로 한다. 해당 시료의 calibration file 은 Windows 10/Ubuntu 18.04 Viewer의 켈리브레이션 파일 생성버튼을 통해 생성할 수 있다.
@@ -32,6 +32,7 @@ sudo -H ./Yujin_Lidar_Viewer.sh
 
 * Driver 유의사항
 2D 의 경우 Filter 가 0.01로, 센서위치가 0.2로 고정되고 수직레벨에 관련된 함수들이 자동으로 무시된다. 또한 2D의 경우 getSphericalOutputs 계열 데이터 출력 함수들의 수직각도 값과 getCartesianOutputs 데이터 출력 함수의 Z값을 무시하면 된다.
+Thread 를 생성하고 시작하는 start() 함수를 호출하기 전 setInputIpAddress(), setCalibrationFilePath() 로 먼저 기본 설정을 해야 한다.
 
 * Windows 10 드라이버 빌드 환경
 YRL 시리즈를 위한 본 Windows 10 Driver 는 C++ 로 쓰여졌으며,
@@ -71,6 +72,9 @@ fwSetYrlIpAddress 는 라이다의 IP주소를 변경한다.
 4) test_error_code.cpp
 - 기본적인 YRL 시리즈의 에러코드를 시험할 수 있는 예제이다.
 시작할 때 에러 H가 발생하며, 주기적으로 getErrorCode 함수를 통해 에러값을 받아오고 해당 에러가 발견될 시 로그를 프린트한다.
+
+5) test_multilidar_operation.cpp
+- 다수의 라이다를 하나의 드라이버 어플리케이션으로 데이터를 취득 및 시험할 수 있는 예제이다.
 
 * ROS Melodic Driver 유의사항
 1) 기본적인 내용은 https://github.com/yujinrobot/yujin_lidar 을 참조한다.

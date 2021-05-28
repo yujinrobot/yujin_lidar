@@ -49,6 +49,7 @@
 
 #ifdef _MSC_VER
 #define PACK( __Declaration__ ) __pragma( pack(push, 1) ) __Declaration__ __pragma( pack(pop))
+#define _WINSOCK_DEPRECATED_NO_WARNINGS 0
 #endif
 
 #define NO_BYTES_FOR_HEADER_ID      4

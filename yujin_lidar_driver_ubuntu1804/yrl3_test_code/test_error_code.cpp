@@ -1,7 +1,7 @@
 /*********************************************************************
 *  Copyright (c) 2020, YujinRobot Corp.
 *  
-*  Ju Young Kim, jykim3@yujinrobot.com
+*  Hyeon Jeong Kim, hjkim2@yujinrobot.com
 *  
 *  Non-monifiable freely redistributable software(FRS)
 *  
@@ -56,12 +56,11 @@ int main()
 
     /// Using factory function, create a new YRL_Library object
     YRL_Library* instance = producing_func();
-    instance->start();
-
     /// Set LiDAR's IP address as an input IP address for driver
     instance->setInputIpAddress("192.168.1.250");
     /// Set LiDAR's Calibration File Path
     instance->setCalibrationFilePath("/home/jykim/lktest.bin");
+    instance->start();
 
     /// Making a finite loop
     int timer(0);

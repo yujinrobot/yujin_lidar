@@ -1,7 +1,7 @@
 /*********************************************************************
 *  Copyright (c) 2020, YujinRobot Corp.
 *  
-*  Ju Young Kim, jykim3@yujinrobot.com
+*  Hyeon Jeong Kim, hjkim2@yujinrobot.com
 *  
 *  Non-monifiable freely redistributable software(FRS)
 *  
@@ -55,12 +55,12 @@ int main( int argc, char ** argv)
 
     /// Using factory function, create a new YRL_Library object
     YRL_Library* instance = producing_func();
-    instance->start();
-
     /// Set LiDAR's IP address as an input IP address for driver
     instance->setInputIpAddress(argv[1]);
     /// Set LiDAR's Calibration File Path
     instance->setCalibrationFilePath("/home/jykim/lktest.bin");
+
+    instance->start();
 
     /// Simple parameter get functions
     std::string inputIpAddress;
@@ -110,7 +110,7 @@ int main( int argc, char ** argv)
     double rotation_per_sec;
 
     /// Simple parameter set functions
-    instance->setSensorHeight(1.5); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
+    instance->setSensorHeight(1.0); /// sensor at 1.5m height. The default height when the sensor is on ground is 0.07m
     instance->setMaxRange(30); /// max range of 30m
     instance->setUpperDataLimit(4); /// Data upper limit of 4 when the sensor is at 1.5m height
     instance->setLowerDataLimit(-2); /// Data lower limit of -2 when the sensor is at 1.5m height
@@ -118,7 +118,7 @@ int main( int argc, char ** argv)
     instance->setMinVerticalAngle(-45); /// default value of -45 (total 90 degrees of vertical FOV)
     instance->setMaxHorizontalAngle(135); /// default value of 135 (total 270 degrees of horizontal FOV)
     instance->setMinHorizontalAngle(-135); /// default value of -135 (total 270 degrees of horizontal FOV)
-    instance->setCurrentFilterLevel(0.01); /// Default filter level is 0.01. Depending on user applications, this filter level may need to be adjusted.
+    instance->setCurrentFilterLevel(0.03); /// Default filter level is 0.01. 0.03 is recommended, for most cases.
 
     std::cout << "\nAfter Setting-----------------------------------------------------------------------------------------------\n" << std::endl;
 
