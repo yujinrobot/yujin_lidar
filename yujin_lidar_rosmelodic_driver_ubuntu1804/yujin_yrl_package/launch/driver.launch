@@ -1,0 +1,6 @@
+<!--
+  Standalone launcher for the driver
+ -->
+<launch>
+  <node pkg="yujin_yrl_package" type="yrl_pub" name="yrl_pub" args="" cwd="node"/>
+</launch>
